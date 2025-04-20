@@ -1,0 +1,9 @@
+POST http://localhost:5000/api/blogs
+Content-Type: application/json
+
+{
+    "title": "The Power of Organic Content in Marketing",
+    "excerpt": "Understand why organic content is key to building trust and long-term growth for your brand.",
+    "content": "<p>Organic content is a cornerstone of modern marketing...</p>",
+    "author": "Emily Johnson"
+}
