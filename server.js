@@ -8,15 +8,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect("mongodb+srv://disha27:Pavbhaji270802&@cluster0.whin8ib.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => console.error('MongoDB connection error:', err));
+app.get('/', (req, res) => {
+    res.send('Welcome to the Marketing27 Backend API! Use /api/blogs, /api/case-studies, or other endpoints.');
+});
 
+// Connect to MongoDB (only once)
 mongoose.connect(process.env.MONGO_URL)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('MongoDB connection error:', err));
 
 // User Schema
 const userSchema = new mongoose.Schema({
@@ -213,7 +212,7 @@ app.delete('/api/case-studies/:id', authenticateToken, async (req, res) => {
     }
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
