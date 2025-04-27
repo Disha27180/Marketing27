@@ -9,12 +9,14 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://disha27:Pavbhaji270802&@ac-nrz8lop-shard-00-00.whin8ib.mongodb.net:27017,ac-nrz8lop-shard-00-01.whin8ib.mongodb.net:27017,ac-nrz8lop-shard-00-02.whin8ib.mongodb.net:27017/?replicaSet=atlas-an2b9q-shard-0&ssl=true&authSource=admin&retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect("mongodb+srv://disha27:Pavbhaji270802&@cluster0.whin8ib.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('MongoDB connection error:', err));
+
+mongoose.connect(process.env.MONGO_URL)
 
 // User Schema
 const userSchema = new mongoose.Schema({
